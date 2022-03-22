@@ -20,9 +20,11 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
     @FXML
+    private PasswordField passwordField;
+    @FXML
     private TextField usernameField;
     @FXML
-    private PasswordField passwordField;
+    private TextField emailField;
     @FXML
     private ChoiceBox<String> choiceBox;
     private Stage stage;
@@ -32,15 +34,17 @@ public class SignUpController implements Initializable {
     void signUpButtonOnAction(ActionEvent event) throws IOException {
         String username = this.usernameField.getText();
         String password = this.passwordField.getText();
+        String email = this.emailField.getText();
         String role = this.choiceBox.getValue();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
 
         try {
-            PreparedStatement stmt = connectDb.prepareStatement("insert into useraccount(Username,Password,Role) values(?,?,?);");
+            PreparedStatement stmt = connectDb.prepareStatement("insert into useraccounts(Username,Password,Email,Role) values(?,?,?,?);");
             stmt.setString(1, username);
             stmt.setString(2, password);
-            stmt.setString(3, role);
+            stmt.setString(3, email);
+            stmt.setString(4, role);
             int status = stmt.executeUpdate();
             System.out.println("Registered Successfully");
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));

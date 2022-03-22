@@ -9,39 +9,46 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo2.HomepageController">
    <children>
-      <ImageView fitHeight="144.0" fitWidth="768.0">
+      <ImageView fitHeight="152.0" fitWidth="776.0">
          <image>
             <Image url="@pic3.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="homepageLabel" layoutX="332.0" layoutY="170.0" prefHeight="30.0" prefWidth="104.0" text="Home Page">
+      <Label fx:id="homepageLabel" layoutX="333.0" layoutY="171.0" prefHeight="30.0" prefWidth="111.0" text="Home Page">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="106.0" fitWidth="200.0" layoutX="67.0" layoutY="214.0">
-         <image>
-            <Image url="@dashboard_final.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="dashboardButton" layoutX="130.0" layoutY="320.0" mnemonicParsing="false" text="Dashboard" />
-      <ImageView fitHeight="106.0" fitWidth="200.0" layoutX="495.0" layoutY="214.0">
+      <Button fx:id="courseButton" layoutX="141.0" layoutY="358.0" mnemonicParsing="false" onAction="#courseButtonOnAction" text="Course" />
+      <ImageView fitHeight="90.0" fitWidth="195.0" layoutX="70.0" layoutY="260.0">
          <image>
             <Image url="@course_final.png" />
          </image>
       </ImageView>
-      <Button fx:id="courseButton" layoutX="569.0" layoutY="320.0" mnemonicParsing="false" text="Course" />
-      <Button fx:id="profileButton" layoutX="141.0" layoutY="495.0" mnemonicParsing="false" text="Profile" />
-      <ImageView fitHeight="106.0" fitWidth="200.0" layoutX="67.0" layoutY="381.0">
-         <image>
-            <Image url="@profile.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="106.0" fitWidth="200.0" layoutX="495.0" layoutY="389.0">
+      <Button fx:id="profileButton" layoutX="363.0" layoutY="358.0" mnemonicParsing="false" onAction="#profileButtonOnAction" text="Profile" />
+      <ImageView fitHeight="90.0" fitWidth="200.0" layoutX="510.0" layoutY="254.0">
          <image>
             <Image url="@faq.png" />
          </image>
       </ImageView>
-      <Button fx:id="faqButton" layoutX="576.0" layoutY="495.0" mnemonicParsing="false" text="FAQ" />
+      <Button fx:id="faqButton" layoutX="590.0" layoutY="358.0" mnemonicParsing="false" onAction="#faqButtonOnAction" text="FAQ" />
+      <ImageView fitHeight="120.0" fitWidth="200.0" layoutX="284.0" layoutY="248.0">
+         <image>
+            <Image url="@profile1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="175.0" layoutX="168.0" layoutY="424.0">
+         <image>
+            <Image url="@changepass.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="85.0" fitWidth="200.0" layoutX="439.0" layoutY="419.0">
+         <image>
+            <Image url="@report.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="changePassButton" layoutX="201.0" layoutY="511.0" mnemonicParsing="false" onAction="#changePassButtonOnAction" text="Change Password" />
+      <Button fx:id="reportButton" layoutX="513.0" layoutY="511.0" mnemonicParsing="false" onAction="#reportButtonOnAction" text="Report" />
+      <Button fx:id="logoutButton" layoutX="710.0" layoutY="545.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" text="Logout" />
    </children>
 </AnchorPane>

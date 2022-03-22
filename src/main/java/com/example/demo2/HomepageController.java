@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -18,6 +20,7 @@ public class HomepageController implements Initializable {
     @FXML
     private Label homepageLabel;
     private Stage stage;
+    private String username;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -25,36 +28,76 @@ public class HomepageController implements Initializable {
     }
 
     @FXML
-    void dashboardButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Dashboard.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    @FXML
     void courseButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Course.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        CourseController coursePage = fxmlLoader.getController();
+        coursePage.setUsername(String.valueOf(username));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     void profileButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Profile.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        ProfileController profilePage = fxmlLoader.getController();
+        profilePage.setUsername(String.valueOf(username));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     void faqButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Faq.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        FaqController faqPage = fxmlLoader.getController();
+        faqPage.setUsername(String.valueOf(username));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void changePassButtonOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ChangePass.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        ChangePassController changePassPage = fxmlLoader.getController();
+        changePassPage.setUsername(String.valueOf(username));
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void reportButtonOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Report.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        ReportController reportPage = fxmlLoader.getController();
+        reportPage.setUsername(String.valueOf(username));
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void logoutButtonOnAction(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You are about to logout");
+        alert.setContentText("Do you want to logout?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+    public void setUsername(String Username){
+        username=Username;
     }
 }
 

@@ -49,7 +49,7 @@ public class Controller implements Initializable {
     public void validateLogin(ActionEvent event) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM useraccount WHERE Username = '" + username.getText() + "' AND Password = '" + password.getText() + "' AND Role = '" + myChoiceBox.getValue() + "'";
+        String verifyLogin = "SELECT count(1) FROM useraccounts WHERE Username = '" + username.getText() + "' AND Password = '" + password.getText() + "' AND Role = '" + myChoiceBox.getValue() + "'";
         try {
             Statement statement = connectDb.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -70,6 +70,9 @@ public class Controller implements Initializable {
     public void verifiedLogin(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        HomepageController homePage = fxmlLoader.getController();
+        homePage.setUsername(username.getText());
+
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.stage.setScene(scene);
         this.stage.show();
