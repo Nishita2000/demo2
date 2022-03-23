@@ -1,5 +1,6 @@
 package com.example.demo2;
 
+import com.lambdaworks.crypto.SCryptUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,15 +50,16 @@ public class Controller implements Initializable {
     public void validateLogin(ActionEvent event) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM useraccounts WHERE Username = '" + username.getText() + "' AND Password = '" + password.getText() + "' AND Role = '" + myChoiceBox.getValue() + "'";
+        String Password = this.password.getText();
+
+        String verifyLogin = "SELECT count(1),Password FROM useraccounts WHERE Username = '" + username.getText() + "' AND Role = '" + myChoiceBox.getValue() + "'";
         try {
             Statement statement = connectDb.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1) {
+                if ((queryResult.getInt(1) == 1) && SCryptUtil.check(Password, queryResult.getString(2))) {
                     verifiedLogin(event);
-
                 } else {
                     loginMessage.setText("Invalid login. Please try again!");
                 }
@@ -77,10 +79,11 @@ public class Controller implements Initializable {
         this.stage.setScene(scene);
         this.stage.show();
     }
+
     @FXML
     public void signUpButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Register.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 568, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 568, 436);
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.stage.setScene(scene);
         this.stage.show();

@@ -14,7 +14,7 @@
             <Image url="@pic3.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="homepageLabel" layoutX="333.0" layoutY="171.0" prefHeight="30.0" prefWidth="111.0" text="Home Page">
+      <Label fx:id="homepageLabel" alignment="CENTER" layoutY="171.0" prefHeight="30.0" prefWidth="776.0" text="Home Page">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -31,7 +31,7 @@
             <Image url="@faq.png" />
          </image>
       </ImageView>
-      <Button fx:id="faqButton" layoutX="590.0" layoutY="358.0" mnemonicParsing="false" onAction="#faqButtonOnAction" text="FAQ" />
+      <Button fx:id="qandaButton" layoutX="589.0" layoutY="358.0" mnemonicParsing="false" onAction="#qandaButtonOnAction" text="Q&amp;A" />
       <ImageView fitHeight="120.0" fitWidth="200.0" layoutX="284.0" layoutY="248.0">
          <image>
             <Image url="@profile1.png" />

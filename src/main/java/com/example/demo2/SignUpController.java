@@ -18,9 +18,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import com.lambdaworks.crypto.SCryptUtil;
+
 public class SignUpController implements Initializable {
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private TextField nameField;
     @FXML
     private TextField usernameField;
     @FXML
@@ -32,21 +36,23 @@ public class SignUpController implements Initializable {
 
     @FXML
     void signUpButtonOnAction(ActionEvent event) throws IOException {
+        String name = this.nameField.getText();
         String username = this.usernameField.getText();
         String password = this.passwordField.getText();
+        String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 16, 16, 16);
         String email = this.emailField.getText();
         String role = this.choiceBox.getValue();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
 
         try {
-            PreparedStatement stmt = connectDb.prepareStatement("insert into useraccounts(Username,Password,Email,Role) values(?,?,?,?);");
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            stmt.setString(3, email);
-            stmt.setString(4, role);
+            PreparedStatement stmt = connectDb.prepareStatement("insert into useraccounts(Name,Username,Password,Email,Role) values(?,?,?,?,?);");
+            stmt.setString(1, name);
+            stmt.setString(2, username);
+            stmt.setString(3, generatedSecuredPasswordHash);
+            stmt.setString(4, email);
+            stmt.setString(5, role);
             int status = stmt.executeUpdate();
-            System.out.println("Registered Successfully");
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 568, 400);
             this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

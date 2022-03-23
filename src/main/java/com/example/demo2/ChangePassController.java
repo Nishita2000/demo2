@@ -1,5 +1,6 @@
 package com.example.demo2;
 
+import com.lambdaworks.crypto.SCryptUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,15 +46,16 @@ public class ChangePassController {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM useraccounts WHERE Username = '" + username + "' AND Password = '" + currentPassword + "'";
+        String verifyLogin = "SELECT count(1),Password FROM useraccounts WHERE Username = '" + username + "'";
         try {
             Statement statement = connectDb.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1 && newPassword.equals(confirmPassword)) {
+                if ((queryResult.getInt(1) == 1) && (SCryptUtil.check(currentPassword, queryResult.getString(2))) && (newPassword.equals(confirmPassword))) {
                     PreparedStatement stmt = connectDb.prepareStatement("UPDATE useraccounts SET Password = ? WHERE Username = '" + username + "'");
-                    stmt.setString(1, newPassword);
+                    String generatedSecuredPasswordHash = SCryptUtil.scrypt(newPassword, 16, 16, 16);
+                    stmt.setString(1, generatedSecuredPasswordHash);
                     int status = stmt.executeUpdate();
                     myLabel.setText("Password Updated!");
                 } else {
@@ -65,6 +67,7 @@ public class ChangePassController {
         }
 
     }
+
     @FXML
     public void backButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Homepage.fxml"));
@@ -73,8 +76,9 @@ public class ChangePassController {
         this.stage.setScene(scene);
         this.stage.show();
     }
-    public void setUsername(String Username){
-        username=Username;
+
+    public void setUsername(String Username) {
+        username = Username;
     }
 
 }
