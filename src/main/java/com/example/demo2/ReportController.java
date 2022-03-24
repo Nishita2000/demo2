@@ -44,11 +44,14 @@ public class ReportController {
     public void backButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        HomepageController homePage = fxmlLoader.getController();
+        homePage.setUsername(username);
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.stage.setScene(scene);
         this.stage.show();
     }
-    public void setUsername(String Username){
-        username=Username;
+
+    public void setUsername(String Username) {
+        username = Username;
     }
 }

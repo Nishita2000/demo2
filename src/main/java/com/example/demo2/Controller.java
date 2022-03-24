@@ -74,7 +74,6 @@ public class Controller implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         HomepageController homePage = fxmlLoader.getController();
         homePage.setUsername(username.getText());
-
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.stage.setScene(scene);
         this.stage.show();
