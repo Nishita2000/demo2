@@ -64,7 +64,7 @@ public class CourseController {
     public void joinButtonOnAction(ActionEvent event) throws  IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("JoinCourse.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        joinCourseController joinCoursecontroller = fxmlLoader.getController();
+        JoinCourseController joinCoursecontroller = fxmlLoader.getController();
         joinCoursecontroller.setUsername(username);
         joinCoursecontroller.setRole(role);
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

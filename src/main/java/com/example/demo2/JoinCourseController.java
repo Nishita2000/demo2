@@ -1,6 +1,5 @@
 package com.example.demo2;
 
-import com.lambdaworks.crypto.SCryptUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class joinCourseController {
+public class JoinCourseController {
     private String username;
     private Stage stage;
     private String role;
