@@ -55,10 +55,10 @@ public class joinCourseController {
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     int courseId = queryResult.getInt(2);
-                    System.out.println(courseId);
-                    PreparedStatement stmt = connectDb.prepareStatement("insert into studentcourse(courseID,studentName) values(?,?);");
+                    PreparedStatement stmt = connectDb.prepareStatement("insert into studentcourse(courseID,studentName,courseName) values(?,?,?);");
                     stmt.setInt(1, courseId);
                     stmt.setString(2, username);
+                    stmt.setString(3,courseName);
                     int status = stmt.executeUpdate();
                     invalidCodeMsg.setText("Joined successfully");
                 } else {
