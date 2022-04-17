@@ -8,17 +8,15 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName = ""; //schemaName
+        String databaseName = "userbase";
         String databaseUser = "root";
-        String databasePassword = ""; //pass
+        String databasePassword = "Neonika2000";
         String url = "jdbc:mysql://localhost/" + databaseName;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             databaseLink= DriverManager.getConnection(url,databaseUser,databasePassword);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return databaseLink;
