@@ -8,9 +8,9 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName = "";// schema name
+        String databaseName = "userbase";
         String databaseUser = "root";
-        String databasePassword = ""; // password
+        String databasePassword = "Neonika2000";
         String url = "jdbc:mysql://localhost/" + databaseName;
 
         try {
