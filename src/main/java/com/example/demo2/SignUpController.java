@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,6 +32,8 @@ public class SignUpController implements Initializable {
     private TextField emailField;
     @FXML
     private ChoiceBox<String> choiceBox;
+    @FXML
+    private Label signUpSuccessMsg;
     private Stage stage;
     private final String[] option = {"Teacher", "Student"};
 
@@ -58,8 +61,10 @@ public class SignUpController implements Initializable {
             this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-        } catch (SQLException var11) {
-            System.out.println("Error while connecting to the database.Exception code: " + var11);
+
+        } catch (SQLException e) {
+            signUpSuccessMsg.setText("Username already taken");
+            System.out.println("Error while connecting to the database.Exception code: " + e);
         }
 
     }

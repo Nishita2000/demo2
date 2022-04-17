@@ -3,14 +3,37 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="584.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo2.joinCourseController">
    <children>
       <Button fx:id="backButton" layoutX="711.0" layoutY="537.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
-      <Label layoutX="408.0" layoutY="252.0" text="Class Code:" />
-      <PasswordField fx:id="classCodeField" layoutX="497.0" layoutY="248.0" />
-      <Button fx:id="joinButton" layoutX="546.0" layoutY="328.0" mnemonicParsing="false" text="JOIN" />
+      <Label layoutX="443.0" layoutY="296.0" prefHeight="20.0" prefWidth="94.0" text="Class Code     :">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <PasswordField fx:id="classCodeField" layoutX="548.0" layoutY="295.0" />
+      <Button fx:id="joinButton" layoutX="563.0" layoutY="370.0" mnemonicParsing="false" onAction="#joinCourseButtonOnAction" text="JOIN" />
+      <ImageView fitHeight="584.0" fitWidth="372.0">
+         <image>
+            <Image url="@Pic1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="443.0" layoutY="252.0" prefHeight="17.0" prefWidth="94.0" text="Course Name :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="109.0" fitWidth="180.0" layoutX="482.0" layoutY="67.0">
+         <image>
+            <Image url="@tutorial.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="invalidCodeMsg" alignment="CENTER" layoutX="372.0" layoutY="201.0" prefHeight="17.0" prefWidth="406.0" />
+      <TextField fx:id="courseNameField" layoutX="548.0" layoutY="250.0" />
    </children>
 </AnchorPane>
