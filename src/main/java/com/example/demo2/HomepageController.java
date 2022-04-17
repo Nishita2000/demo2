@@ -18,6 +18,7 @@ public class HomepageController {
     private Label homepageLabel;
     private Stage stage;
     private String username;
+    private String role;
 
     @FXML
     void courseButtonOnAction(ActionEvent event) throws IOException {
@@ -25,6 +26,7 @@ public class HomepageController {
         Scene scene = new Scene(fxmlLoader.load());
         CourseController coursePage = fxmlLoader.getController();
         coursePage.setUsername(String.valueOf(username));
+        coursePage.setRole(String.valueOf(role));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -93,6 +95,10 @@ public class HomepageController {
     public void setUsername(String Username) {
         username = Username;
         homepageLabel.setText("Welcome " + username);
+    }
+    public void setRole(String Role)
+    {
+        role=Role;
     }
 }
 
